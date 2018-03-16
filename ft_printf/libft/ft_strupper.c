@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strmerge.c                                      :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/03/07 18:07:58 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 19:31:25 by adubugra         ###   ########.fr       */
+/*   Created: 2018/03/15 19:54:15 by adubugra          #+#    #+#             */
+/*   Updated: 2018/03/15 20:05:29 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <libft.h>
 
-char	*ft_strmerge(char *a, char *b)
+char	*ft_strupper(char *str)
 {
-	char	*ret;
+	char *s;
 
-	ret = ft_strjoin(a, b);
-	ft_strdel(&a);
-	ft_strdel(&b);
-	return (ret);
+	s = str;
+	while (*str)
+	{
+		*str = ft_toupper(*str);
+		str++;
+	}
+	return (s);
 }

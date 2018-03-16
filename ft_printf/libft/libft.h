@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 11:21:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 09:04:01 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/15 19:59:36 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,12 @@ typedef struct	s_gnl
 void			ft_swap(int *i1, int *i2);
 
 void			ft_mod(int *i1);
+
+char			*ft_itoa_base(int value, int base);
+
+char			*ft_ltoa_base(long value, int base);
+
+char			*ft_strupper(char *str);
 
 int				get_next_line(int const fd, char **line);
 

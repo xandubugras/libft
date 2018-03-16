@@ -6,7 +6,7 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 19:12:17 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/08 19:16:27 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/15 19:56:37 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,9 @@ SRCS=ft_memset.c \
 				ft_memchr.c \
 				ft_swap.c \
 				ft_mod.c \
+				ft_itoa_base.c \
+				ft_ltoa_base.c \
+				ft_strupper.c \
 				ft_memcmp.c \
 				ft_strcpy.c \
 				ft_strdup.c \
