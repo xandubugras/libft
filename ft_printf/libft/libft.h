@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 11:21:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 19:59:36 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:00:01 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,10 @@ int				get_next_line(int const fd, char **line);
 
 char			*ft_strmerge(char *a, char *b);
 
+char			*ft_strinsert(char **src, char *str, int location);
+
+char			*ft_strinsert_sub(char **src, char *str, int location);
+
 int				ft_atoi(const char *str);
 
 size_t			ft_strlen(const char *s);
@@ -75,8 +79,6 @@ char			*ft_strcat(char *s1, const char *s2);
 
 char			*ft_strncat(char *s1, const char *s2, size_t n);
 
-
-
 size_t			ft_strlcat(char *dst, const char *src, size_t size);
 
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -90,6 +92,8 @@ char			*ft_strstr(const char *haystack, const char *needle);
 int				ft_isalpha(int c);
 
 int				ft_isdigit(int c);
+
+int				ft_isdigit_sign(int c);
 
 int				ft_isalnum(int c);
 

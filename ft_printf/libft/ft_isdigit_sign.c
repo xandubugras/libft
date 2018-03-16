@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncpy.c                                       :+:      :+:    :+:   */
+/*   ft_isdigit_sign.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/02/21 16:30:08 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/16 13:33:07 by adubugra         ###   ########.fr       */
+/*   Created: 2018/03/16 14:09:27 by adubugra          #+#    #+#             */
+/*   Updated: 2018/03/16 14:10:01 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-char	*ft_strncpy(char *dst, const char *src, size_t len)
+int		ft_isdigit_sign(int c)
 {
-	size_t		i;
-
-	i = 0;
-	while (i < len)
-	{
-		if (src[i])
-			dst[i] = src[i];
-		else
-			while (i < len)
-			{
-				dst[i] = '\0';
-				i++;
-			}
-		i++;
-	}
-	return (dst);
+	return ((c <= '9' && c >= '0') || c == '-' || c == '+');
 }

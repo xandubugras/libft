@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 08:11:18 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 22:04:10 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:30:19 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,10 @@ int main()
     printf("-#10x: %-#10x \n", number);
     printf("#x: %#x \n", number);
 */
-	ft_printf("%8.9d\n", -999999);
-	printf("%8.9d\n", -999999);
+	ft_printf("%*.*p\n",12, 9, "asfd");
+	printf("%*.*p\n","asdf");
+	ft_printf("%12.9d\n",-12345);
+	printf("%12.9d\n", -12345);
 	//ft_printf("%*s. peep1. %c. %%  peep2. %d.\n", 1, "200", 'a', 300);
 	//printf("%*s. peep1. %c. %%  peep2. %d.\n",1, "200", 'a', 300);
 

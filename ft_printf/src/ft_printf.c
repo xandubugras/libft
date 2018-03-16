@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 09:02:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 14:29:13 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/16 15:17:56 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int				ft_printf(char *format, ...)
 	int		number_of_args;
 	char	*current_descriptor;
 	char	*c;
+	int		i;
 
 	number_of_args = count_args(format);
     va_start(arg_pointer, format);
@@ -32,10 +33,17 @@ int				ft_printf(char *format, ...)
 		if (*format == '%')
 		{
 			current_descriptor = separate_descriptor(&format);
-			if ((c = strchr(current_descriptor, '*')) != NULL)
-				*c = (char)va_arg(arg_pointer, int) + 48;
+			while ((strchr(current_descriptor, '*')) != NULL)
+			{
+				i = 0;
+				while (current_descriptor[i] != '*')
+					i++;
+				c = ft_itoa(va_arg(arg_pointer, int)); 
+				ft_strinsert_sub(&current_descriptor, c, i);
+				free (c);
+				ft_printf("current_descriptor: %s\n", current_descriptor);
+			}
 			ft_putstr(handle_descriptor(current_descriptor, arg_pointer));
-			//ft_putstr(current_descriptor);
 			format++;
 		}
 		else

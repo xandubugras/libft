@@ -6,7 +6,7 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/02/23 19:12:17 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/15 19:56:37 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/16 15:00:12 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRCS=ft_memset.c \
 				ft_ltoa_base.c \
 				ft_strupper.c \
 				ft_memcmp.c \
+				ft_strinsert.c \
+				ft_strinsert_sub.c \
 				ft_strcpy.c \
 				ft_strdup.c \
 				ft_strcat.c \
@@ -47,6 +49,7 @@ SRCS=ft_memset.c \
 				ft_atoi.c \
 				ft_isalpha.c \
 				ft_isdigit.c \
+				ft_isdigit_sign.c \
 				ft_strmerge.c \
 				get_next_line.c \
 				ft_isalnum.c \
