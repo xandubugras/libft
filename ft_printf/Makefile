@@ -6,7 +6,7 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/07 18:20:10 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/17 20:00:22 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/18 14:33:07 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,7 @@ NAME	= ft_printf
 SRC		= main.c \
 		  handling.c \
 		  handling2.c \
+		  size_handling.c \
 		  arguments.c \
 		  ft_printf.c
 

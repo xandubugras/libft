@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 11:21:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/16 15:00:01 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/18 12:03:23 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void			ft_mod(int *i1);
 
 char			*ft_itoa_base(int value, int base);
 
-char			*ft_ltoa_base(long value, int base);
+char			*ft_ltoa_base(long long value, int base);
+
+char			*ft_ultoa_base(unsigned long long value, int base);
+
+int				ft_return_mod(int i);
 
 char			*ft_strupper(char *str);
 

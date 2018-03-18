@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 14:42:33 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/17 20:19:35 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/18 11:24:39 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*arg_to_string(char *descriptor, va_list arg_pointer)
 	char				*c;
 	char				*aux;
 
+	if (descriptor == 0)
+		return (0);
 	if (ft_strchr(descriptor, 's'))
 		return (va_arg(arg_pointer, char *));
 	if ((ft_strchr(descriptor, 'c') || ft_strchr(descriptor, 'C')))
@@ -29,7 +31,7 @@ char	*arg_to_string(char *descriptor, va_list arg_pointer)
 	}
 	if ((ft_strchr(descriptor, 'p')))
 	{
-		c = ft_ltoa_base((unsigned long)va_arg(arg_pointer, unsigned long *), 16);
+		c = ft_ltoa_base((unsigned long long)va_arg(arg_pointer, unsigned long long *), 16);
 		aux = ft_strjoin("0x", c);
 		free(c);
 		return (aux);
@@ -40,30 +42,26 @@ char	*arg_to_string(char *descriptor, va_list arg_pointer)
 char	*more_arg_to_string(char *descriptor, va_list arg_pointer)
 {
 	char	*aux;
-	int		tmp;
 
 	aux = 0;
 	if (ft_strchr(descriptor, 'd') || ft_strchr(descriptor, 'i'))
 	{
-		aux = ft_itoa(va_arg(arg_pointer, int));
+		aux = sizetoa(descriptor, arg_pointer, 10);
 		aux = handle_plus(descriptor, aux);
 	}
 	if ((ft_strchr(descriptor, 'u')))
 	{
-		if ((tmp = va_arg(arg_pointer, int) <= 0))
-			aux = "0";
-		aux = ft_itoa(tmp);
+		aux = usizetoa(descriptor, arg_pointer, 10);
+		aux = handle_plus(descriptor, aux);
 	}
 	if (ft_strchr(descriptor, 'x'))
 		aux = ft_itoa_base(va_arg(arg_pointer, int), 16);
 	if (ft_strchr(descriptor, 'X'))
-		aux = ft_strupper(ft_itoa_base(va_arg(arg_pointer, int), 16));
+		aux = ft_strupper(sizetoa(descriptor, arg_pointer, 16));
 	if (ft_strchr(descriptor, 'o'))
-	{
-		aux = ft_itoa_base(va_arg(arg_pointer, int), 8);
-	}
+		aux = sizetoa(descriptor, arg_pointer, 8);
 	if (ft_strchr(descriptor, 'O'))
-		aux = ft_strupper(ft_itoa_base(va_arg(arg_pointer, int), 8));
+		aux = ft_strupper(sizetoa(descriptor, arg_pointer, 8));
 	if (aux != 0)
 	{
 		aux = handle_precision(descriptor, aux);
