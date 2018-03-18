@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 09:02:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/16 15:17:56 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/17 19:36:59 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int				ft_printf(char *format, ...)
 				c = ft_itoa(va_arg(arg_pointer, int)); 
 				ft_strinsert_sub(&current_descriptor, c, i);
 				free (c);
-				ft_printf("current_descriptor: %s\n", current_descriptor);
 			}
 			ft_putstr(handle_descriptor(current_descriptor, arg_pointer));
 			format++;

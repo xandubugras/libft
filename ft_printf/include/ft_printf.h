@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/07 18:11:40 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/15 15:11:06 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/17 20:00:03 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int		ft_printf(char *format, ...);
 int		is_format_letter(char c);
 
 char	*handle_descriptor(char *descriptor, va_list arg_pointer);
+
+char	*handle_plus(char *descriptor, char *current_str);
+
+char	*handle_hashtag(char *descriptor, char *current_str);
+
+char	*handle_padding(char *descriptor, char *current_str);
+
+char	*handle_precision(char *descriptor, char *current_str);
 
 char	*arg_to_string(char *descriptor, va_list arg_pointer);
 
