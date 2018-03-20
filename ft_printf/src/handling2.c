@@ -6,45 +6,103 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 16:25:12 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/17 20:14:22 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:56:10 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-char	*handle_hashtag(char *descriptor, char *current_str)
+void			handle_hashtag_precision(t_descriptor *descriptor)
 {
-	char *new_str;
+	char	*fill;
+	int		i;
 
-	new_str = 0;
-	if (descriptor[0] == '#')
+		fill = descriptor->type == 'x' ? "0x" : "0X";
+		i = 0;
+		while (!ft_isdigit(descriptor->final_content[i]))
+			i++;
+		if (descriptor->type == 'o')
+		{
+			if (descriptor->final_content[i] == '0')
+				return ;
+			else if (i > 0 && descriptor->final_content[i - 1] == ' ')
+				descriptor->final_content[i - 1] = '0';
+			else
+				ft_strinsert(&(descriptor->final_content), "0", i);
+		}
+		else if (i == 0)
+			ft_strinsert(&(descriptor->final_content), fill, i);
+		else if (i == 1 && fill[1] != '\0')
+		{
+			descriptor->final_content[0] = fill[1];
+			ft_strinsert_char(&(descriptor->final_content), fill[0], 0);
+		}
+		else if (i >= 2)
+			ft_strncpy(&(descriptor->final_content[i - 2]), fill, 2);
+}
+
+void			handle_hashtag_zero(t_descriptor *descriptor)
+{
+	char	*fill;
+
+	if (descriptor->hash)
 	{
-		if (ft_strchr(descriptor, 'x'))
+		fill = descriptor->type == 'x' ? "0x" : "0X";
+		if (descriptor->type == 'o')
+			fill = "0";
+		if (descriptor->final_content[0] == '0')
 		{
-			new_str = ft_strnew(ft_strlen(current_str) + 2);
-			new_str[0] = '0';
-			new_str[1] = 'x';
-			ft_strncpy(&new_str[2], current_str, ft_strlen(current_str));
+			if (descriptor->type == 'o')
+				return ;
+			else if (descriptor->final_content[1] == '0')
+				ft_strncpy(descriptor->final_content, fill, 2);
+			else
+				ft_strinsert_sub(&(descriptor->final_content), fill, 0);
 		}
-		if (ft_strchr(descriptor, 'X'))
-		{
-			new_str = ft_strnew(ft_strlen(current_str) + 2);
-			new_str[0] = '0';
-			new_str[1] = 'X';
-			ft_strncpy(&new_str[2], current_str, ft_strlen(current_str));
-		}
-		if (ft_strchr(descriptor, 'o') && current_str[0] != '0')
-		{
-			new_str = ft_strnew(ft_strlen(current_str) + 1);
-			new_str[0] = '0';
-			ft_strncpy(&new_str[1], current_str, ft_strlen(current_str));
-		}
-		if (new_str != 0)
-		{
-			free(current_str);
-			return (new_str);
-		}
-		descriptor[0] = ' ';
+		else if (ft_isdigit(descriptor->final_content[0]))
+			ft_strinsert(&(descriptor->final_content), fill, 0);
 	}
-	return (current_str);
+}
+
+void			handle_minus(t_descriptor *descriptor)
+{
+	int		i;
+	char	*dsc;
+	char	*new;
+	int		len;
+
+	if (descriptor->minus)
+	{
+		dsc = descriptor->final_content; 
+		new = ft_strnew(ft_strlen(dsc));
+		i = 0;
+		while (dsc[i] == ' ')
+			i++;
+		if (i == 0)
+			return ;
+		len = ft_strlen(&(dsc[i]));
+		ft_strncpy(new, &(dsc[i]), len);
+		i = len;
+		while (i < ft_strlen(dsc))
+			new[i++] = ' ';
+		free(dsc);
+		descriptor->final_content = new;
+	}
+}
+
+char			*handle_star(char **description, va_list arg_pointer)
+{
+	int		i;
+	char	*c;
+
+	while ((strchr(*description, '*')) != NULL)
+	{
+		i = 0;
+		while ((*description)[i] != '*')
+			i++;
+		c = ft_itoa(va_arg(arg_pointer, int));
+		ft_strinsert_sub(description, c, i);
+		free (c);
+	}
+	return (*description);
 }

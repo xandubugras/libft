@@ -6,7 +6,7 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/07 18:20:10 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/18 14:33:07 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/19 15:31:36 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ NAME	= ft_printf
 SRC		= main.c \
 		  handling.c \
 		  handling2.c \
-		  size_handling.c \
+		  set_descriptor.c \
+		  set_descriptor2.c \
 		  arguments.c \
 		  ft_printf.c
 
@@ -24,7 +25,7 @@ OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 # compiler
 CC		= gcc
-CFLAGS	= -Werror -Wall -Wextra -g
+CFLAGS	= -Wall -Wextra -g
 
 # ft library
 FT		= ./libft/

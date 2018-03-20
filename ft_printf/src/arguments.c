@@ -6,69 +6,154 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 14:42:33 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/18 11:24:39 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/19 19:44:37 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-char	*more_arg_to_string(char *descriptor, va_list arg_pointer);
+static char	*set_num_final_2(t_descriptor *descriptor, va_list arg_pointer);
 
-char	*arg_to_string(char *descriptor, va_list arg_pointer)
+static char	*uset_num_final_2(t_descriptor *descriptor, va_list arg_pointer);
+
+void	set_final(t_descriptor *descriptor, va_list arg_pointer)
 {
 	char				*c;
-	char				*aux;
 
-	if (descriptor == 0)
-		return (0);
-	if (ft_strchr(descriptor, 's'))
-		return (va_arg(arg_pointer, char *));
-	if ((ft_strchr(descriptor, 'c') || ft_strchr(descriptor, 'C')))
+	if (!NOT_TYPE_S(descriptor->type))
+		descriptor->final_content = va_arg(arg_pointer, char *);
+	else if (!NOT_TYPE_C(descriptor->type) || descriptor->type == '%')
 	{
-		c = malloc(sizeof(char));
-		*c = (char)va_arg(arg_pointer, int);
-		return (c);
+		descriptor->final_content = malloc(sizeof(char));
+		*(descriptor->final_content) = descriptor->type == '%' ? '%' : (char)va_arg(arg_pointer, int);
 	}
-	if ((ft_strchr(descriptor, 'p')))
+	else if (descriptor->type == 'p')
 	{
-		c = ft_ltoa_base((unsigned long long)va_arg(arg_pointer, unsigned long long *), 16);
-		aux = ft_strjoin("0x", c);
+		descriptor->arg = (unsigned long long)va_arg(arg_pointer, unsigned long long *);
+		descriptor->final_content = ft_ltoa_base(descriptor->arg, 16);
+		c = descriptor->final_content;
+		descriptor->final_content = ft_strjoin("0x", c);
 		free(c);
-		return (aux);
 	}
-	return (more_arg_to_string(descriptor, arg_pointer));
+	else if (descriptor->type == 'u' || descriptor->type == 'U')
+		uset_num_final(descriptor, arg_pointer);
+	else if (descriptor->type == 'X' || descriptor->type == 'O')
+		descriptor->final_content = ft_strupper(uset_num_final(descriptor, arg_pointer));
+	else
+		set_num_final(descriptor, arg_pointer);
 }
 
-char	*more_arg_to_string(char *descriptor, va_list arg_pointer)
+char	*set_num_final(t_descriptor *descriptor, va_list arg_pointer)
 {
-	char	*aux;
+	char		char_case;
+	short		short_case;
+	long		long_case;
+	int			base;
 
-	aux = 0;
-	if (ft_strchr(descriptor, 'd') || ft_strchr(descriptor, 'i'))
+	base = descriptor->base;
+	if (descriptor->length == HH)
 	{
-		aux = sizetoa(descriptor, arg_pointer, 10);
-		aux = handle_plus(descriptor, aux);
+		char_case = (char)va_arg(arg_pointer, int);
+		descriptor->final_content = ft_itoa_base((int)char_case, base);
 	}
-	if ((ft_strchr(descriptor, 'u')))
+	else if (descriptor->length == H)
 	{
-		aux = usizetoa(descriptor, arg_pointer, 10);
-		aux = handle_plus(descriptor, aux);
+		short_case = (short)va_arg(arg_pointer, int);
+		descriptor->final_content = ft_itoa_base((int)short_case, base);
 	}
-	if (ft_strchr(descriptor, 'x'))
-		aux = ft_itoa_base(va_arg(arg_pointer, int), 16);
-	if (ft_strchr(descriptor, 'X'))
-		aux = ft_strupper(sizetoa(descriptor, arg_pointer, 16));
-	if (ft_strchr(descriptor, 'o'))
-		aux = sizetoa(descriptor, arg_pointer, 8);
-	if (ft_strchr(descriptor, 'O'))
-		aux = ft_strupper(sizetoa(descriptor, arg_pointer, 8));
-	if (aux != 0)
+	else if (descriptor->length == L)
 	{
-		aux = handle_precision(descriptor, aux);
-		aux = handle_hashtag(descriptor, aux);
-		aux = handle_padding(descriptor, aux);
-		return (aux);
+		long_case = va_arg(arg_pointer, long);
+		descriptor->final_content = ft_ltoa_base((long long)long_case, base);
 	}
-	return (0);
+	else
+		return (set_num_final_2(descriptor, arg_pointer));
+	return (descriptor->final_content);
 }
 
+static char	*set_num_final_2(t_descriptor *descriptor, va_list arg_pointer)
+{
+
+	uintmax_t		uint_case;
+	size_t			sizet_case;
+	long long		ll_case;
+	int				base;
+
+	base = descriptor->base;
+	if (descriptor->length == J)
+	{
+		uint_case = va_arg(arg_pointer, uintmax_t);
+		descriptor->final_content = ft_ultoa_base((long long)uint_case, base);
+	}
+	else if (descriptor->length == Z)
+	{
+		sizet_case = va_arg(arg_pointer, size_t);
+		descriptor->final_content = ft_ultoa_base((long long)sizet_case, base);
+	}
+	else if (descriptor->length == LL)
+	{
+		ll_case = va_arg(arg_pointer, long long);
+		descriptor->final_content = (ft_ltoa_base(ll_case, base));
+	}
+	else
+		descriptor->final_content = ft_itoa_base(va_arg(arg_pointer, int), base);
+	return (descriptor->final_content);
+}
+
+
+char	*uset_num_final(t_descriptor *descriptor, va_list arg_pointer)
+{
+	unsigned char		char_case;
+	unsigned short		short_case;
+	unsigned long		long_case;
+	int					base;
+
+	base = descriptor->base;
+	if (descriptor->length == HH)
+	{
+		char_case = (unsigned char)va_arg(arg_pointer, unsigned int);
+		descriptor->final_content = (ft_itoa_base((unsigned int)char_case, base));
+	}
+	else if (descriptor->length == H)
+	{
+		short_case = (unsigned short)va_arg(arg_pointer, unsigned int);
+		descriptor->final_content = (ft_itoa_base((unsigned int)short_case, base));
+	}
+	else if (descriptor->length == L)
+	{
+		long_case = va_arg(arg_pointer, unsigned long);
+		descriptor->final_content = (ft_ultoa_base((unsigned long long)long_case, base));
+	}
+	else
+		return (uset_num_final_2(descriptor, arg_pointer));
+	return (descriptor->final_content);
+}
+
+static char	*uset_num_final_2(t_descriptor *descriptor, va_list arg_pointer)
+{
+
+	uintmax_t		uint_case;
+	size_t			sizet_case;
+	unsigned long long		ll_case;
+	int						base;
+
+	base = descriptor->base;
+	if (descriptor->length == J)
+	{
+		uint_case = va_arg(arg_pointer, uintmax_t);
+		descriptor->final_content = (ft_ultoa_base((unsigned long long)uint_case, base));
+	}
+	else if (descriptor->length == Z)
+	{
+		sizet_case = va_arg(arg_pointer, size_t);
+		descriptor->final_content = (ft_ultoa_base((unsigned long long)sizet_case, base));
+	}
+	else if (descriptor->length == LL)
+	{
+		ll_case = va_arg(arg_pointer, unsigned long long);
+		descriptor->final_content = (ft_ultoa_base(ll_case, base));
+	}
+	else
+		descriptor->final_content = (ft_ultoa_base(va_arg(arg_pointer, unsigned int), base));
+	return (descriptor->final_content);
+}

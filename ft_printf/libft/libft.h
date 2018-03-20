@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/02/19 11:21:03 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/18 12:03:23 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/19 15:18:25 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,10 @@ int				get_next_line(int const fd, char **line);
 char			*ft_strmerge(char *a, char *b);
 
 char			*ft_strinsert(char **src, char *str, int location);
+
+char			*ft_strinsert_char(char **src, char str, int location);
+
+char			*ft_strremove_char(char **src, int location);
 
 char			*ft_strinsert_sub(char **src, char *str, int location);
 
