@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 14:42:33 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 17:29:57 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/22 20:59:26 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ char			*set_num_final(t_descriptor *descriptor, va_list arptr)
 	{
 		long_case = va_arg(arptr, long);
 		if (long_case == LONG_MIN)
-			descriptor->F_C = ft_strdup("-2147483647");
+			descriptor->F_C = ft_strdup("-9223372036854775808");
 		else
 			descriptor->F_C = ft_ltoa_base(long_case, descriptor->base);
 	}

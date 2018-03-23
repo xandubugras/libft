@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:41:07 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 20:09:16 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:45:40 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ void		format_content(t_descriptor *descriptor)
 	if (descriptor->F_C[0] && descriptor->precision > 0)
 		handle_precision(descriptor);
 	handle_padding(descriptor);
-	handle_plus_space(descriptor);
-	if (descriptor->hash && descriptor->type !='d')
+	if (descriptor->type != 'c')
+		handle_plus_space(descriptor);
+	if (descriptor->hash && descriptor->type != 'd')
 	{
 		if (descriptor->zero)
 			handle_hashtag_zero(descriptor);
@@ -44,7 +45,7 @@ void		handle_precision(t_descriptor *descriptor)
 	if (descriptor->precision)
 	{
 		len = ft_strlen(descriptor->F_C);
-		if (len < descriptor->precision)
+		if (len < descriptor->precision && descriptor->type != 's')
 		{
 			new_str = ft_strnew(descriptor->precision);
 			i = 0;

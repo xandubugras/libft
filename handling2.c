@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 17:08:25 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 19:26:13 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/22 21:07:17 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			handle_hashtag_precision(t_descriptor *dsc)
 	i = 0;
 	while (!ft_isdigit(dsc->F_C[i]) && dsc->F_C[i])
 		i++;
-	if (dsc->type == 'o' || (dsc->F_C[i] == '0' && !dsc->F_C[i + 1]))
+	if (!N_TYPE_O(dsc->type) || (dsc->F_C[i] == '0' && !dsc->F_C[i + 1]))
 	{
 		if (dsc->F_C[i] == '0')
 			return ;
