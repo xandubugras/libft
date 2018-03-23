@@ -8,7 +8,7 @@ Conversions: sSpdDioOuUxXcC
 • The minimum field-width
 • The precision
 • The length flags hh, h, l, ll, j, et z.
-
+#How it works
 in order to do that I use a lot of string parsing and manipulation:
 
 The function printf iterates through the string input by the user. if it finds a '%', it start working on it, else it just prints the character.
@@ -30,12 +30,12 @@ second: padding(makes the string have length equal to that, adds 0s if the zero 
 third: +#-space
 
 - switchs the padding to the left, 
-# adds 0x to XxOo 
+ hashtag adds 0x to XxOo 
 + adds a + sign to a positive number
 space adds a space instead of the positive sign
 
 After handling all the formating is done, print the final string and sum the len of it to the string.
 
---------------------------------Testing-------------------------
+#Testing
 
 In order to test, just add your functions to main.c and run make comp .
