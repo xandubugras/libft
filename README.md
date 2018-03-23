@@ -5,7 +5,7 @@ Recode the printf function in C. Much more challenging then it seems.
 
 In order to test, just add your functions to main.c and run make comp .
 
-# how it works
+# How it works
 Program manages:
 Conversions: sSpdDioOuUxXcC
 • %%
