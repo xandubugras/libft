@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:41:07 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 19:38:35 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/22 20:09:16 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void		format_content(t_descriptor *descriptor)
 		handle_precision(descriptor);
 	handle_padding(descriptor);
 	handle_plus_space(descriptor);
-	if (descriptor->hash)
+	if (descriptor->hash && descriptor->type !='d')
 	{
 		if (descriptor->zero)
 			handle_hashtag_zero(descriptor);
