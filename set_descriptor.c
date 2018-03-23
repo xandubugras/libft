@@ -6,7 +6,7 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/18 21:25:04 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 19:27:14 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/22 19:46:42 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ char		*separate_descriptor(char **format)
 	else
 		return (NULL);
 	str = *format;
-	while (!is_format_letter(str[i]) && str[i])
+	while (!is_format_letter(str[i]))
 	{
 		if (!str[i] || is_unknown_char(str[i]))
 		{
@@ -115,15 +115,15 @@ int			check_input_errors(t_descriptor *d)
 
 	dsc = d->description;
 	type = d->type;
-	if (d->hash)
-		if (d->plus || (N_TYPE_O(type) && N_TYPE_X(type)))
-			return (1);
-	if (d->plus)
-		if (N_TYPE_D(type))
-			return (1);
-	if (d->zero)
-		if (d->minus || !N_TYPE_C(type) || !N_TYPE_S(type) || type == 'p')
-			return (1);
+	//if (d->hash)
+	//	if (d->plus || (N_TYPE_O(type) && N_TYPE_X(type)))
+	//		return (1);
+	//if (d->plus)
+	//	if (N_TYPE_D(type))
+	//		return (1);
+	//if (d->zero)
+	//	if (d->minus || !N_TYPE_C(type) || !N_TYPE_S(type) || type == 'p')
+	//		return (1);
 	if (ft_strchr(dsc, '.') && !d->precision && (!N_TYPE_X(type) ||
 			!N_TYPE_O(type) || (!N_TYPE_D(type) && d->F_C[0] == '0') ||
 			(!N_TYPE_D(type) && d->F_C[0] == '0')))
