@@ -6,11 +6,11 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 08:11:18 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/22 21:41:41 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/25 11:35:32 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "../include/ft_printf.h"
 #include <limits.h>
 
 int main()
@@ -22,15 +22,12 @@ int main()
 	number = 150000;
 	p = &number;
 
-ft_printf("%.5p, %.p<--\n", 0, 0);
-printf("%.5p, %.p<--\n", 0, 0);
-
 	/*
 ft_printf("%+c<--\n", 0);
 printf("%+c<--\n", 0);
-	ft_printf("%o\n", 42);
+*/	ft_printf("%o\n", 42);
 	printf("%o\n\n", 42);
-	ft_printf("before %o after\n", 42);
+/*	ft_printf("before %o after\n", 42);
 	printf("before %o after\n\n", 42);
 	ft_printf("%o%o%o%o%o\n", 1, 100, 999, 42, 999988888);
 	printf("%o%o%o%o%o\n\n", 1, 100, 999, 42, 999988888);
