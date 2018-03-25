@@ -6,11 +6,15 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/07 18:20:10 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/25 11:54:33 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/25 12:15:05 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= printf
+NAME	= libftprintf.a
+
+LIB		= ar rc
+
+RLIB	= ranlib
 
 # src / obj files
 SRC		= ft_printf.c \
@@ -20,8 +24,7 @@ SRC		= ft_printf.c \
 		  handling2.c \
 		  arguments.c \
 		  arguments_u.c \
-		  unknown_chars.c \
-		  main.c
+		  unknown_chars.c
 
 OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
@@ -46,13 +49,17 @@ obj:
 	mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -c $<
 
 $(FT_LIB):
 	make -C $(FT)
 
 $(NAME): $(OBJ)
-	$(CC) $(OBJ) $(FT_LNK) -lm -o $(NAME)
+	$(LIB) $(NAME) $(OBJ)
+
+comp: obj $(FT_LIB) $(OBJ)
+	$(CC) -c src/main.c
+	$(CC) $(OBJ) main.o $(FT_LNK) -lm -o ft_printf
 
 clean:
 	rm -rf $(OBJDIR)
