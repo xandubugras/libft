@@ -6,7 +6,7 @@
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/03/07 18:20:10 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/25 12:15:05 by adubugra         ###   ########.fr        #
+#    Updated: 2018/03/25 12:32:54 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,8 +63,8 @@ comp: obj $(FT_LIB) $(OBJ)
 
 clean:
 	rm -rf $(OBJDIR)
+	rm main.o
 	make -C $(FT) clean
-	make -C $(MLX) clean
 
 fclean: clean
 	rm -rf $(NAME)
