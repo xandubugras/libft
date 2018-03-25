@@ -5,69 +5,124 @@
 #                                                     +:+ +:+         +:+      #
 #    By: adubugra <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/03/07 18:20:10 by adubugra          #+#    #+#              #
-#    Updated: 2018/03/25 12:32:54 by adubugra         ###   ########.fr        #
+#    Created: 2018/03/19 20:33:37 by adubugra          #+#    #+#              #
+#    Updated: 2018/03/25 14:48:13 by adubugra         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= libftprintf.a
+CC =	gcc
 
-LIB		= ar rc
+FLAG =	-c -I. -Wall -Wextra -Werror
 
-RLIB	= ranlib
+NAME =	libft.a
 
-# src / obj files
-SRC		= ft_printf.c \
-		  set_descriptor.c \
-		  set_descriptor2.c \
-		  handling.c \
-		  handling2.c \
-		  arguments.c \
-		  arguments_u.c \
-		  unknown_chars.c
+LIB =	ar rc
 
-OBJ		= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+RLIB =	ranlib
 
-# compiler
-CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror -g
+SRCS=ft_memset.c \
+				ft_bzero.c \
+				ft_find_number.c \
+				ft_memcpy.c \
+				ft_memccpy.c \
+				ft_strlen.c \
+				ft_memmove.c \
+				ft_toa_hardcoded.c \
+				ft_memchr.c \
+				ft_swap.c \
+				ft_mod.c \
+				ft_itoa_base.c \
+				ft_ltoa_base.c \
+				ft_wput.c \
+				ft_strupper.c \
+				ft_return_mod.c \
+				ft_memcmp.c \
+				ft_strinsert.c \
+				ft_strinsert_sub.c \
+				ft_strcpy.c \
+				ft_strdup.c \
+				ft_strcat.c \
+				ft_strncat.c \
+				ft_strlcat.c \
+				ft_strchr.c \
+				ft_strrchr.c \
+				ft_strstr.c \
+				ft_strnstr.c \
+				ft_strcmp.c \
+				ft_strncmp.c \
+				ft_atoi.c \
+				ft_isalpha.c \
+				ft_isdigit.c \
+				ft_isdigit_sign.c \
+				ft_strmerge.c \
+				get_next_line.c \
+				ft_isalnum.c \
+				ft_isprint.c \
+				ft_toupper.c \
+				ft_tolower.c \
+				ft_strncpy.c \
+				ft_isascii.c \
+				ft_memalloc.c \
+				ft_memdel.c \
+				ft_strnew.c \
+				ft_strdel.c \
+				ft_strclr.c \
+				ft_striter.c \
+				ft_striteri.c \
+				ft_strmap.c \
+				ft_strmapi.c \
+				ft_strequ.c \
+				ft_strnequ.c \
+				ft_strsub.c \
+				ft_strjoin.c \
+				ft_strtrim.c \
+				ft_strsplit.c \
+				ft_itoa.c \
+				ft_putchar.c \
+				ft_putchar_fd.c \
+				ft_putstr.c \
+				ft_putendl.c \
+				ft_putnbr.c \
+				ft_putnbr_fd.c \
+				ft_putstr_fd.c \
+				ft_putendl_fd.c \
+				ft_lstnew.c \
+				ft_lstdelone.c \
+				ft_lstdel.c \
+				ft_lstadd.c \
+				ft_lstiter.c \
+				ft_lstmap.c \
+				ft_strndup.c \
+				get_word_len.c \
+				ft_countwords.c \
+				ft_printf.c \
+				set_descriptor.c \
+				set_descriptor2.c \
+				handling.c \
+				handling2.c \
+				arguments.c \
+				arguments_u.c \
+				unknown_chars.c 
 
-# ft library
-FT		= ./libft/
-FT_LIB	= $(addprefix $(FT),libft.a)
-FT_INC	= -I ./libft
-FT_LNK	= -L ./libft -l ft
+OBJS = $(SRCS:.c=.o)
 
-# directories
-SRCDIR	= ./src/
-INCDIR	= ./include/
-OBJDIR	= ./obj/
+all: $(NAME)
 
-all: obj $(FT_LIB) $(NAME)
+comp: 
+		$(CC) -Wall -Wextra -I. -o libft_exec $(SRCS) main.c && ./libft_exec
 
-obj:
-	mkdir -p $(OBJDIR)
-
-$(OBJDIR)%.o:$(SRCDIR)%.c
-	$(CC) $(CFLAGS) $(FT_INC) -I $(INCDIR) -c $<
-
-$(FT_LIB):
-	make -C $(FT)
-
-$(NAME): $(OBJ)
-	$(LIB) $(NAME) $(OBJ)
-
-comp: obj $(FT_LIB) $(OBJ)
-	$(CC) -c src/main.c
-	$(CC) $(OBJ) main.o $(FT_LNK) -lm -o ft_printf
+$(NAME):
+		@$(CC) $(FLAG) $(SRCS)
+		@$(LIB) $(NAME) $(OBJS)
+		@$(RLIB) $(NAME)
 
 clean:
-	rm -rf $(OBJDIR)
-	rm main.o
-	make -C $(FT) clean
+		@/bin/rm -f $(OBJS)
+		@/bin/rm -f libft_exec
 
-fclean: clean
-	rm -rf $(NAME)
-	make -C $(FT) fclean
+fclean:	clean
+		@/bin/rm -f $(NAME)
 
 re: fclean all
+
+.PHONY: all clean fclean re

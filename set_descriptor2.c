@@ -6,11 +6,11 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/19 08:16:57 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/25 11:24:57 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:45:25 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include <libft.h>
 
 void	set_length(t_descriptor *descriptor)
 {

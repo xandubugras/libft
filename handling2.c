@@ -6,11 +6,11 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 17:08:25 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/25 11:25:12 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:45:53 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "libft.h"
 #define F_C final_content
 
 void			handle_hashtag_precision(t_descriptor *dsc)

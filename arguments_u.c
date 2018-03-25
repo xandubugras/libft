@@ -6,12 +6,11 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/22 14:51:25 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/25 11:24:43 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:46:21 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
-#include <limits.h>
+#include "libft.h"
 #define F_C final_content
 #define BASE descriptor->base
 

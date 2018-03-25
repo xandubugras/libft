@@ -6,11 +6,11 @@
 /*   By: adubugra <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/15 13:41:07 by adubugra          #+#    #+#             */
-/*   Updated: 2018/03/25 11:25:05 by adubugra         ###   ########.fr       */
+/*   Updated: 2018/03/25 14:45:37 by adubugra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_printf.h"
+#include "libft.h"
 #define F_C final_content
 
 void		format_content(t_descriptor *descriptor)
